@@ -1,0 +1,15 @@
+[Unit]
+Description=Nginx running as a systemd nspawn container
+After=network-online.target var-lib-machines-nginx.mount
+Requires=network-online.target var-lib-machines-nginx.mount
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/systemd-nspawn --directory=/var/lib/machines/nginx \
+ --boot \
+ --machine=nginx \
+ --network-bridge=vboxbridge0
+ExecStop=-/usr/bin/machinectl poweroff nginx
+
+[Install]
+WantedBy=multi-user.target

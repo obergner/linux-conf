@@ -1,0 +1,15 @@
+[Unit]
+Description=MariaDB running as a systemd nspawn container
+After=network-online.target var-lib-machines-mariadb.mount
+Requires=network-online.target var-lib-machines-mariadb.mount
+
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/systemd-nspawn --directory=/var/lib/machines/mariadb \
+ --boot \
+ --machine=mariadb \
+ --network-bridge=vboxbridge0
+ExecStop=-/usr/bin/machinectl poweroff mariadb
+
+[Install]
+WantedBy=multi-user.target

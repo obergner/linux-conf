@@ -1,0 +1,4 @@
+[NetDev]
+Name=vboxbridge0
+Kind=bridge
+

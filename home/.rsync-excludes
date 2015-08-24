@@ -1,0 +1,8 @@
+.bash_history
+.config
+.lesshst
+.mysql_history
+.viminfo
+.vim/bundle
+.vim/backup/*
+work
